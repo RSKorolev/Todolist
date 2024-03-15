@@ -5,20 +5,19 @@ import { FilterValueType } from './App';
 export type TodoListPropsType = {
     title: string;
     tasks: TaskType[];
-    removeTask: (taskId: number) => void;
+    removeTask: (taskId: string) => void;
     changeTodolistFilter: (filter: FilterValueType) => void;
+    addTask: () => void;
 };
 export type TaskType = {
-    id: number;
-    title: string;
-    isDone: boolean;
-    id: number;
+    id: string;
     title: string;
     isDone: boolean;
 };
 export const TodoList = ({
     title,
     tasks,
+    addTask,
     removeTask,
     changeTodolistFilter,
 }: TodoListPropsType) => {
@@ -45,7 +44,7 @@ export const TodoList = ({
             <TodoListHeader title={title} />
             <div>
                 <input />
-                <Button title={'+'} />
+                <Button title={'+'} onClickHandler={() => addTask()} />
             </div>
             <ul>{taskList}</ul>
             <div>
