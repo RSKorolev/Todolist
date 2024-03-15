@@ -20,10 +20,10 @@ function App() {
         const updateState = tasks.filter((task) => task.id !== taskId);
         setTasks(updateState);
     };
-    const addTask = () => {
+    const addTask = (title: string) => {
         const newTask: TaskType = {
             id: v1(),
-            title: 'New Task',
+            title,
             isDone: false,
         };
         const updateState = [newTask, ...tasks];
