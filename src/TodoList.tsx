@@ -12,6 +12,9 @@ export type TaskType = {
     id: number;
     title: string;
     isDone: boolean;
+    id: number;
+    title: string;
+    isDone: boolean;
 };
 export const TodoList = ({
     title,
