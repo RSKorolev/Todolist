@@ -1,11 +1,30 @@
 .App {
-  padding: 30px;
-  display: flex;
+    display: flex;
+    background: url('../public/background.jpg') no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
 }
 
-.todolist {
-  border-radius: 10px;
-  background-color: rgb(26, 34, 179);
-  padding: 15px;
-  border: 2px solid rgb(255, 0, 242);
+.App > div {
+    margin-right: 50px;
+}
+.Todolist {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    background: transparent;
+    backdrop-filter: blur(15px);
+    padding: 20px;
+    color: white;
+    width: fit-content;
+    height: fit-content;
+    margin: 20px;
+}
+.CardTitle {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ButtonTitle {
+    margin-top: 20px;
 }
