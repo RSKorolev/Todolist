@@ -22,7 +22,7 @@ export const TodoList = ({
     removeTask,
     changeTodolistFilter,
 }: TodoListPropsType) => {
-    const [taskTitle, setTaskTitle] = React.useState(' ');
+    const [taskTitle, setTaskTitle] = React.useState('');
     console.log(taskTitle);
     const taskList =
         tasks.length === 0 ? (
@@ -46,7 +46,7 @@ export const TodoList = ({
             setTaskTitle('');
         }
     };
-    const onKeyDownNewTaskHendler = (e: KeyboardEvent<HTMLInputElement>) => {
+    const onKeyDownNewTaskHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter' && taskTitle.length > 0) {
             addNewTaskHandler();
         }
@@ -58,9 +58,9 @@ export const TodoList = ({
         (filter: FilterValueType) => () =>
             changeTodolistFilter(filter);
 
-    const macTitleLength = 15;
+    const maxTitleLength = 15;
     const isAddTaskPossible =
-        taskTitle.length && taskTitle.length <= macTitleLength;
+        taskTitle.length && taskTitle.length <= maxTitleLength;
     return (
         <div className="Todolist">
             <TodoListHeader title={title} />
@@ -68,7 +68,7 @@ export const TodoList = ({
                 <input
                     onChange={setTaskTitleHandler}
                     value={taskTitle}
-                    onKeyDown={onKeyDownNewTaskHendler}
+                    onKeyDown={onKeyDownNewTaskHandler}
                 />
                 <Button
                     title={'+'}
@@ -76,7 +76,7 @@ export const TodoList = ({
                     isDisabled={!isAddTaskPossible}
                 />
                 {!taskTitle.length && <div>Please, enter title</div>}
-                {taskTitle.length > macTitleLength && (
+                {taskTitle.length > maxTitleLength && (
                     <div>Task title is to long</div>
                 )}
             </div>
