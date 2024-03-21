@@ -8,9 +8,9 @@ export type FilterValueType = 'all' | 'active' | 'complete';
 function App() {
     const todoListTitle = 'What to learn';
     const initState: Array<TaskType> = [
-        { id: v1(), title: 'HTML & CSS', isDone: true },
-        { id: v1(), title: 'JS & TS', isDone: true },
-        { id: v1(), title: 'React & Redux', isDone: true },
+        { id: v1(), title: 'HTML & CSS', isDone: false },
+        { id: v1(), title: 'JS & TS', isDone: false },
+        { id: v1(), title: 'React & Redux', isDone: false },
     ];
 
     const [tasks, setTasks] = React.useState(initState);

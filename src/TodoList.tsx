@@ -27,7 +27,7 @@ export const TodoList = ({
     changeTaskStatus,
 }: TodoListPropsType) => {
     const [taskTitle, setTaskTitle] = React.useState('');
-    console.log(taskTitle);
+    const [inputError, setInputError] = React.useState(false);
     const taskList =
         tasks.length === 0 ? (
             <span>No tasks</span>
@@ -58,10 +58,13 @@ export const TodoList = ({
         );
 
     const addNewTaskHandler = () => {
-        if (taskTitle.length < 15) {
+        const trimmedTaskTitle = taskTitle.trim();
+        if (trimmedTaskTitle) {
             addTask(taskTitle);
-            setTaskTitle('');
+        } else {
+            setInputError(true);
         }
+        setTaskTitle('');
     };
     const onKeyDownNewTaskHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter' && taskTitle.length > 0) {
@@ -69,6 +72,7 @@ export const TodoList = ({
         }
     };
     const setTaskTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setInputError(false);
         setTaskTitle(e.currentTarget.value);
     };
     const changeTodolistFilterHandlerCreator =
@@ -83,6 +87,7 @@ export const TodoList = ({
             <TodoListHeader title={title} />
             <div>
                 <input
+                    className={inputError ? 'input-error' : ''}
                     onChange={setTaskTitleHandler}
                     value={taskTitle}
                     onKeyDown={onKeyDownNewTaskHandler}
@@ -92,7 +97,11 @@ export const TodoList = ({
                     onClickHandler={addNewTaskHandler}
                     isDisabled={!isAddTaskPossible}
                 />
-                {!taskTitle.length && <div>Please, enter title</div>}
+                {!taskTitle.length && (
+                    <div style={{ color: inputError ? 'red' : '' }}>
+                        Please, enter title
+                    </div>
+                )}
                 {taskTitle.length > maxTitleLength && (
                     <div>Task title is to long</div>
                 )}

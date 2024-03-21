@@ -43,3 +43,7 @@
     border: 2px solid #aa5a96;
     border-radius: 3px;
 }
+.input-error {
+    border: 3px solid red;
+    outline: none;
+}
