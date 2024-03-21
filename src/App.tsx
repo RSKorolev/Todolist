@@ -10,7 +10,7 @@ function App() {
     const initState: Array<TaskType> = [
         { id: v1(), title: 'HTML & CSS', isDone: true },
         { id: v1(), title: 'JS & TS', isDone: true },
-        { id: v1(), title: 'React & Redux', isDone: false },
+        { id: v1(), title: 'React & Redux', isDone: true },
     ];
 
     const [tasks, setTasks] = React.useState(initState);
@@ -48,6 +48,15 @@ function App() {
         }
     };
     const filteredTasks = getFilteredTask(tasks, filter);
+    const changeTaskStatus = (taskId: string) => {
+        const updateTask = tasks.map((task) => {
+            if (task.id === taskId) {
+                return { ...task, isDone: !task.isDone };
+            }
+            return task;
+        });
+        setTasks(updateTask);
+    };
 
     return (
         <div className="App">
@@ -57,6 +66,7 @@ function App() {
                 addTask={addTask}
                 removeTask={removeTask}
                 changeTodolistFilter={changeTodolistFilter}
+                changeTaskStatus={changeTaskStatus}
             />
         </div>
     );

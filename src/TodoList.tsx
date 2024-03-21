@@ -9,6 +9,7 @@ export type TodoListPropsType = {
     removeTask: (taskId: string) => void;
     changeTodolistFilter: (filter: FilterValueType) => void;
     addTask: (title: string) => void;
+    changeTaskStatus: (taskId: string) => void;
 };
 export type TaskType = {
     id: string;
@@ -21,6 +22,7 @@ export const TodoList = ({
     addTask,
     removeTask,
     changeTodolistFilter,
+    changeTaskStatus,
 }: TodoListPropsType) => {
     const [taskTitle, setTaskTitle] = React.useState('');
     console.log(taskTitle);
@@ -30,9 +32,14 @@ export const TodoList = ({
         ) : (
             tasks.map((task) => {
                 const removeTaskHandler = () => removeTask(task.id);
+                const changeTaskStatusHandler = () => changeTaskStatus(task.id);
                 return (
                     <li key={task.id}>
-                        <input type="checkbox" checked={task.isDone} />
+                        <input
+                            type="checkbox"
+                            checked={task.isDone}
+                            onChange={changeTaskStatusHandler}
+                        />
                         <span>{task.title}</span>
                         <Button title="x" onClickHandler={removeTaskHandler} />
                     </li>
