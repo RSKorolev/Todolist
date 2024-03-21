@@ -58,6 +58,7 @@ function App() {
     return (
         <div className="App">
             <TodoList
+                filter={filter}
                 title={todoListTitle}
                 tasks={filteredTasks}
                 addTask={addTask}

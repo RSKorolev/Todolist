@@ -37,3 +37,9 @@
 .task-not-done {
     font-weight: bold;
 }
+.btn-activ {
+    background-color: #aa5a96;
+    color: #ffffff;
+    border: 2px solid #aa5a96;
+    border-radius: 3px;
+}

@@ -10,6 +10,7 @@ export type TodoListPropsType = {
     changeTodolistFilter: (filter: FilterValueType) => void;
     addTask: (title: string) => void;
     changeTaskStatus: (taskId: string, newIsDoneValue: boolean) => void;
+    filter: FilterValueType;
 };
 export type TaskType = {
     id: string;
@@ -19,6 +20,7 @@ export type TaskType = {
 export const TodoList = ({
     title,
     tasks,
+    filter,
     addTask,
     removeTask,
     changeTodolistFilter,
@@ -98,16 +100,19 @@ export const TodoList = ({
             <ul>{taskList}</ul>
             <div>
                 <Button
+                    classes={filter === 'all' ? 'btn-activ' : ''}
                     title={'All'}
                     onClickHandler={changeTodolistFilterHandlerCreator('all')}
                 />
                 <Button
+                    classes={filter === 'active' ? 'btn-activ' : ''}
                     title={'Active'}
                     onClickHandler={changeTodolistFilterHandlerCreator(
                         'active'
                     )}
                 />
                 <Button
+                    classes={filter === 'complete' ? 'btn-activ' : ''}
                     title={'Completed'}
                     onClickHandler={changeTodolistFilterHandlerCreator(
                         'complete'
