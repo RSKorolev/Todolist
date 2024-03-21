@@ -28,3 +28,12 @@
 .ButtonTitle {
     margin-top: 20px;
 }
+
+.task-done {
+    font-weight: bold;
+    opacity: 0.3;
+    text-decoration: line-through;
+}
+.task-not-done {
+    font-weight: bold;
+}

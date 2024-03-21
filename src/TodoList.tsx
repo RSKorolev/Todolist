@@ -9,7 +9,7 @@ export type TodoListPropsType = {
     removeTask: (taskId: string) => void;
     changeTodolistFilter: (filter: FilterValueType) => void;
     addTask: (title: string) => void;
-    changeTaskStatus: (taskId: string) => void;
+    changeTaskStatus: (taskId: string, newIsDoneValue: boolean) => void;
 };
 export type TaskType = {
     id: string;
@@ -32,7 +32,9 @@ export const TodoList = ({
         ) : (
             tasks.map((task) => {
                 const removeTaskHandler = () => removeTask(task.id);
-                const changeTaskStatusHandler = () => changeTaskStatus(task.id);
+                const changeTaskStatusHandler = (
+                    e: ChangeEvent<HTMLInputElement>
+                ) => changeTaskStatus(task.id, e.currentTarget.checked); //
                 return (
                     <li key={task.id}>
                         <input
@@ -40,7 +42,13 @@ export const TodoList = ({
                             checked={task.isDone}
                             onChange={changeTaskStatusHandler}
                         />
-                        <span>{task.title}</span>
+                        <span
+                            className={
+                                task.isDone ? 'task-done' : 'task-not-done'
+                            }
+                        >
+                            {task.title}
+                        </span>
                         <Button title="x" onClickHandler={removeTaskHandler} />
                     </li>
                 );

@@ -48,13 +48,10 @@ function App() {
         }
     };
     const filteredTasks = getFilteredTask(tasks, filter);
-    const changeTaskStatus = (taskId: string) => {
-        const updateTask = tasks.map((task) => {
-            if (task.id === taskId) {
-                return { ...task, isDone: !task.isDone };
-            }
-            return task;
-        });
+    const changeTaskStatus = (taskId: string, newIsDoneValue: boolean) => {
+        const updateTask = tasks.map((task) =>
+            task.id === taskId ? { ...task, isDone: newIsDoneValue } : task
+        );
         setTasks(updateTask);
     };
 
