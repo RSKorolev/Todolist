@@ -72,7 +72,7 @@ export const TodoList = ({
         }
     };
     const setTaskTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setInputError(false);
+        setInputError && setInputError(false);
         setTaskTitle(e.currentTarget.value);
     };
     const changeTodolistFilterHandlerCreator =
